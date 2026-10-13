@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shah Zeb — BS Computer Science student and aspiring web developer. Explore my skills, projects, and contact details." />
+  <meta name="theme-color" content="#0b1020" />
+  <title>Shah Zeb | Web Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(18, 27, 49, .82);
+      --panel-solid: #121b31;
+      --text: #eef3ff;
+      --muted: #aab6d0;
+      --accent: #72e6c1;
+      --accent-2: #8ba7ff;
+      --border: rgba(255,255,255,.11);
+      --shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 10% 5%, rgba(91,112,255,.16), transparent 35%),
+        radial-gradient(ellipse at 90% 25%, rgba(67,224,181,.10), transparent 30%), var(--bg);
+      color: var(--text); line-height: 1.65; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; background: rgba(11,16,32,.78); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.04em; font-size: 1.15rem; }
+    .brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 13px; color: #09121c; background: linear-gradient(135deg,var(--accent),var(--accent-2)); font-weight: 900; }
+    .nav-links { display: flex; gap: 27px; align-items: center; color: var(--muted); font-size: .94rem; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .menu-toggle { display: none; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 7px 11px; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 19px; border-radius: 12px; border: 1px solid transparent; background: linear-gradient(120deg,var(--accent),#9af0d5); color: #08151a; font-weight: 800; transition: transform .2s, box-shadow .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(114,230,193,.18); }
+    .btn.secondary { background: transparent; color: var(--text); border-color: var(--border); }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 50px; padding-top: 70px; padding-bottom: 80px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); background: rgba(114,230,193,.08); border: 1px solid rgba(114,230,193,.2); padding: 7px 12px; border-radius: 99px; font-size: .85rem; font-weight: 700; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 15px var(--accent); }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.3rem); line-height: 1.04; letter-spacing: -.065em; margin: 24px 0 20px; }
+    .gradient-text { background: linear-gradient(100deg,var(--accent),var(--accent-2)); color: transparent; background-clip: text; -webkit-background-clip: text; }
+    .hero p { max-width: 620px; color: var(--muted); font-size: 1.1rem; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .quick-stats { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 42px; }
+    .stat strong { display: block; font-size: 1.35rem; }
+    .stat span { color: var(--muted); font-size: .85rem; }
+    .hero-art { position: relative; display: grid; place-items: center; min-height: 390px; }
+    .orb { position: absolute; width: 310px; height: 310px; border-radius: 50%; background: linear-gradient(140deg,rgba(114,230,193,.17),rgba(139,167,255,.12)); filter: blur(1px); border: 1px solid rgba(255,255,255,.1); }
+    .code-card { position: relative; width: min(100%, 390px); border: 1px solid var(--border); border-radius: 20px; background: rgba(18,27,49,.9); box-shadow: var(--shadow); overflow: hidden; transform: rotate(2deg); }
+    .code-top { display: flex; align-items: center; gap: 7px; padding: 15px 18px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: .83rem; }
+    .window-dot { width: 9px; height: 9px; border-radius: 50%; background: #ff7185; }
+    .window-dot:nth-child(2) { background: #f4c66a; } .window-dot:nth-child(3) { background: #72e6c1; }
+    .code-content { padding: 25px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88rem; line-height: 2; }
+    .code-content .indent { padding-left: 22px; } .code-content .purple { color: #c7a5ff; } .code-content .green { color: var(--accent); } .code-content .blue { color: #91b6ff; } .code-content .comment { color: #7e8aa8; }
+    section { padding: 78px 0; }
+    .section-head { margin-bottom: 34px; }
+    .section-kicker { color: var(--accent); font-weight: 800; font-size: .82rem; letter-spacing: .15em; text-transform: uppercase; }
+    h2 { font-size: clamp(2rem,4vw,3rem); letter-spacing: -.05em; line-height: 1.15; margin-top: 8px; }
+    .section-head p { max-width: 650px; color: var(--muted); margin-top: 12px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 27px; box-shadow: var(--shadow); }
+    .panel h3 { margin-bottom: 12px; font-size: 1.15rem; }
+    .panel p { color: var(--muted); }
+    .highlight-list { display: grid; gap: 13px; margin-top: 20px; }
+    .highlight { display: flex; align-items: flex-start; gap: 12px; }
+    .check { flex: 0 0 26px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 8px; background: rgba(114,230,193,.12); color: var(--accent); font-weight: 900; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .skill { padding: 21px; border: 1px solid var(--border); border-radius: 16px; background: var(--panel); transition: transform .2s,border-color .2s; }
+    .skill:hover, .project:hover { transform: translateY(-4px); border-color: rgba(114,230,193,.45); }
+    .skill-icon { font-size: 1.5rem; margin-bottom: 11px; }
+    .skill h3 { font-size: 1rem; margin-bottom: 5px; }
+    .skill p { color: var(--muted); font-size: .86rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .project { overflow: hidden; border: 1px solid var(--border); border-radius: 19px; background: var(--panel); transition: transform .2s,border-color .2s; }
+    .project-cover { min-height: 175px; display: grid; place-items: center; padding: 25px; background: linear-gradient(135deg,rgba(114,230,193,.17),rgba(139,167,255,.19)); border-bottom: 1px solid var(--border); }
+    .mini-browser { width: 100%; max-width: 260px; padding: 10px; border: 1px solid rgba(255,255,255,.22); background: rgba(8,14,28,.8); border-radius: 10px; }
+    .mini-browser .bar { height: 7px; width: 45%; background: var(--accent-2); border-radius: 5px; margin-bottom: 12px; }
+    .mini-browser .line { height: 6px; width: 82%; background: rgba(255,255,255,.2); border-radius: 5px; margin: 8px 0; }
+    .mini-browser .line.short { width: 55%; } .mini-browser .blocks { display: flex; gap: 7px; margin-top: 12px; }
+    .mini-browser .blocks span { height: 35px; flex: 1; border-radius: 5px; background: rgba(114,230,193,.23); }
+    .project-body { padding: 22px; } .project-body p { color: var(--muted); font-size: .92rem; margin: 9px 0 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag { font-size: .75rem; color: var(--accent); border: 1px solid rgba(114,230,193,.2); background: rgba(114,230,193,.06); padding: 4px 8px; border-radius: 7px; }
+    .project-link { display: inline-block; margin-top: 17px; color: var(--accent); font-weight: 700; font-size: .9rem; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px; }
+    .contact-method { padding: 15px 0; border-bottom: 1px solid var(--border); }
+    .contact-method:last-child { border-bottom: 0; }
+    .contact-method small { display: block; color: var(--muted); }
+    .contact-method a { overflow-wrap: anywhere; }
+    form { display: grid; gap: 14px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: block; font-size: .87rem; margin-bottom: 6px; color: var(--muted); }
+    input, textarea { width: 100%; padding: 12px 14px; color: var(--text); background: rgba(4,9,20,.6); border: 1px solid var(--border); border-radius: 10px; outline: none; }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    textarea { min-height: 130px; resize: vertical; }
+    .form-note { color: var(--muted); font-size: .8rem; }
+    footer { border-top: 1px solid var(--border); padding: 25px 0; color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
+    .back-top { color: var(--accent); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    #toast { position: fixed; bottom: 22px; left: 50%; transform: translate(-50%,20px); background: var(--accent); color: #07151a; padding: 12px 18px; border-radius: 12px; font-weight: 750; opacity: 0; pointer-events: none; transition: .25s; z-index: 50; max-width: calc(100% - 30px); }
+    #toast.show { opacity: 1; transform: translate(-50%,0); }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; gap: 10px; padding-top: 55px; }
+      .hero-art { min-height: 340px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .projects-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px,1120px); }
+      nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: #0e1528; border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch; gap: 13px; }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { width: 100%; }
+      .hero { min-height: auto; padding-top: 55px; padding-bottom: 45px; }
+      h1 { font-size: clamp(2.7rem,13vw,4.2rem); }
+      .hero-art { min-height: 300px; }
+      .orb { width: 245px; height: 245px; }
+      .code-content { padding: 18px; font-size: .78rem; }
+      section { padding: 58px 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .quick-stats { gap: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Shah Zeb home"><span class="brand-mark">SZ</span><span>Shah Zeb<span class="gradient-text">.</span></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+        <a class="btn" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span> BS Computer Science Student</div>
+        <h1>Hi, I'm Shah Zeb.<br /><span class="gradient-text">Web Developer</span></h1>
+        <p>I build clean, responsive, and user-friendly websites using HTML, CSS, and JavaScript. I'm learning every day and turning ideas into practical web experiences.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#projects">Explore My Work <span aria-hidden="true">↓</span></a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+        <div class="quick-stats">
+          <div class="stat"><strong>3+</strong><span>Core web technologies</span></div>
+          <div class="stat"><strong>Responsive</strong><span>Mobile-first mindset</span></div>
+          <div class="stat"><strong>Always</strong><span>Learning & improving</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Decorative code illustration">
+        <div class="orb"></div>
+        <div class="code-card">
+          <div class="code-top"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span><span style="margin-left:8px">portfolio.js</span></div>
+          <div class="code-content">
+            <div><span class="purple">const</span> developer = {</div>
+            <div class="indent">name: <span class="green">'Shah Zeb'</span>,</div>
+            <div class="indent">field: <span class="green">'Web Development'</span>,</div>
+            <div class="indent">skills: [<span class="blue">'HTML'</span>,</div>
+            <div class="indent">&nbsp;&nbsp;<span class="blue">'CSS'</span>, <span class="blue">'JavaScript'</span>],</div>
+            <div class="indent">readyToLearn: <span class="purple">true</span></div>
+            <div>};</div>
+            <div class="comment">// Building something better every day ✨</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal"><div class="section-kicker">A little about me</div><h2>Curious mind. <span class="gradient-text">Creative builder.</span></h2><p>I'm a BS Computer Science student focused on building a strong foundation in web development and software problem-solving.</p></div>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>My journey</h3>
+            <p>My web development journey starts with the fundamentals: writing structured HTML, styling thoughtful layouts with CSS, and using JavaScript to make websites interactive. I enjoy experimenting, solving problems, and improving projects step by step.</p>
+            <div class="highlight-list">
+              <div class="highlight"><span class="check">✓</span><div><strong>Clean design</strong><p>Simple layouts with clear visual hierarchy.</p></div></div>
+              <div class="highlight"><span class="check">✓</span><div><strong>Responsive thinking</strong><p>Interfaces designed for desktop, tablet, and mobile.</p></div></div>
+              <div class="highlight"><span class="check">✓</span><div><strong>Continuous learning</strong><p>Building projects to turn concepts into real skills.</p></div></div>
+            </div>
+          </article>
+          <article class="panel reveal">
+            <h3>What I'm working toward</h3>
+            <p>My goal is to become a skilled web developer who can build accessible, fast, and useful digital products from start to finish.</p>
+            <div class="highlight-list">
+              <div class="highlight"><span class="check">01</span><div><strong>Master the basics</strong><p>Strengthen HTML, CSS, JavaScript, and programming logic.</p></div></div>
+              <div class="highlight"><span class="check">02</span><div><strong>Build real projects</strong><p>Create portfolio pieces that solve everyday problems.</p></div></div>
+              <div class="highlight"><span class="check">03</span><div><strong>Grow professionally</strong><p>Learn modern tools and collaborate on development work.</p></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal"><div class="section-kicker">My toolkit</div><h2>Skills I'm building</h2><p>My current focus is on front-end development and the foundations that make websites work well.</p></div>
+        <div class="skills-grid">
+          <article class="skill reveal"><div class="skill-icon">🌐</div><h3>HTML5</h3><p>Semantic structure and accessible page content.</p></article>
+          <article class="skill reveal"><div class="skill-icon">🎨</div><h3>CSS3</h3><p>Layouts, responsive design, transitions, and styling.</p></article>
+          <article class="skill reveal"><div class="skill-icon">⚡</div><h3>JavaScript</h3><p>DOM interaction, events, and dynamic UI features.</p></article>
+          <article class="skill reveal"><div class="skill-icon">📱</div><h3>Responsive UI</h3><p>Flexible layouts for different screen sizes.</p></article>
+          <article class="skill reveal"><div class="skill-icon">🧩</div><h3>Problem Solving</h3><p>Breaking tasks into clear, manageable steps.</p></article>
+          <article class="skill reveal"><div class="skill-icon">🖥️</div><h3>Web Design</h3><p>Consistent spacing, typography, and visual hierarchy.</p></article>
+          <article class="skill reveal"><div class="skill-icon">🔧</div><h3>Debugging</h3><p>Finding issues and testing practical fixes.</p></article>
+          <article class="skill reveal"><div class="skill-icon">📚</div><h3>Learning</h3><p>Developing skills through practice and projects.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal"><div class="section-kicker">Selected work</div><h2>Projects & practice</h2><p>These are portfolio-ready project examples. Replace the demo descriptions and links with your finished projects when they are ready.</p></div>
+        <div class="projects-grid">
+          <article class="project reveal">
+            <div class="project-cover"><div class="mini-browser"><div class="bar"></div><div class="line"></div><div class="line short"></div><div class="blocks"><span></span><span></span><span></span></div></div></div>
+            <div class="project-body"><h3>ZEB Store Website</h3><p>A home and lifestyle shop concept with product categories, product cards, and a customer-friendly shopping layout.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><a class="project-link" href="#contact">Ask about this project ↗</a></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-cover"><div class="mini-browser"><div class="bar" style="background:#c7a5ff"></div><div class="line"></div><div class="line short"></div><div class="blocks"><span></span><span></span></div></div></div>
+            <div class="project-body"><h3>Personal Portfolio</h3><p>A responsive portfolio to introduce myself, share my skills, present work, and make it easy to get in touch.</p><div class="tags"><span class="tag">Responsive</span><span class="tag">UI Design</span><span class="tag">JavaScript</span></div><a class="project-link" href="#home">You're viewing it ↗</a></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-cover"><div class="mini-browser"><div class="bar" style="background:#f4c66a"></div><div class="line short"></div><div class="line"></div><div class="blocks"><span></span><span></span><span></span></div></div></div>
+            <div class="project-body"><h3>Interactive Web App</h3><p>A practice project idea for JavaScript events, form validation, dynamic content, and a smooth user experience.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">DOM</span><span class="tag">Forms</span></div><a class="project-link" href="#contact">Discuss an idea ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal"><div class="section-kicker">Get in touch</div><h2>Have an idea? <span class="gradient-text">Let's talk.</span></h2><p>For project discussions, collaboration, or learning opportunities, send me a message.</p></div>
+        <div class="contact-grid">
+          <div class="panel reveal">
+            <h3>Contact details</h3>
+            <p>Update the email and social links below with your real contact information before publishing.</p>
+            <div class="contact-method"><small>Email</small><a href="mailto:zebs40926@.com">zebs40926@.com</a></div>
+            <div class="contact-method"><small>Location</small><span>Swabi, Khyber Pakhtunkhwa, Pakistan</span></div>
+            <div class="contact-method"><small>Availability</small><span>Open to learning, collaboration, and beginner projects</span></div>
+          </div>
+          <div class="panel reveal">
+            <h3>Send a message</h3>
+            <form id="contactForm">
+              <div class="field-row">
+                <div><label for="name">Your name</label><input id="name" name="name" placeholder="Enter your name" required /></div>
+                <div><label for="email">Your email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
+              </div>
+              <div><label for="subject">Subject</label><input id="subject" name="subject" placeholder="What would you like to discuss?" required /></div>
+              <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Write your message..." required></textarea></div>
+              <button class="btn" type="submit">Prepare Email <span aria-hidden="true">↗</span></button>
+              <p class="form-note">This demo opens your email app; it does not send or store messages on a server.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner"><span>© <span id="year"></span> Shah Zeb. Built with HTML, CSS & JavaScript.</span><a class="back-top" href="#home">Back to top ↑</a></div>
+  </footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal sections gently as they enter the viewport.
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+
+    // Highlight the current section in the navigation.
+    const sections = document.querySelectorAll('main section[id]');
+    const navAnchors = navLinks.querySelectorAll('a[href^="#"]');
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navAnchors.forEach(anchor => {
+              anchor.classList.toggle('active', anchor.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-35% 0px -55% 0px' });
+      sections.forEach(section => sectionObserver.observe(section));
+    }
+
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const formData = new FormData(form);
+      const name = formData.get('name').trim();
+      const email = formData.get('email').trim();
+      const subject = formData.get('subject').trim();
+      const message = formData.get('message').trim();
+      // Replace this placeholder with your own email address.
+      const recipient = 'zebs40926@.com';
+      if (recipient === 'zebs40926@.com') {
+        showToast('Please replace zebs40926@.com with your real email in the HTML first.');
+        return;
+      }
+      const body = `Name: ${name}\nReply email: ${email}\n\n${message}`;
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
