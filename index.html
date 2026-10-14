@@ -252,7 +252,7 @@
           <div class="panel reveal">
             <h3>Contact details</h3>
             <p>Update the email and social links below with your real contact information before publishing.</p>
-            <div class="contact-method"><small>Email</small><a href="mailto:zebs40926@.com">zebs40926@.com</a></div>
+            <div class="contact-method"><small>Email</small><a href="mailto:azeb52610@gmail.com">azeb52610@gmail.com</a></div>
             <div class="contact-method"><small>Location</small><span>Swabi, Khyber Pakhtunkhwa, Pakistan</span></div>
             <div class="contact-method"><small>Availability</small><span>Open to learning, collaboration, and beginner projects</span></div>
           </div>
@@ -350,11 +350,8 @@
       const subject = formData.get('subject').trim();
       const message = formData.get('message').trim();
       // Replace this placeholder with your own email address.
-      const recipient = 'zebs40926@.com';
-      if (recipient === 'zebs40926@.com') {
-        showToast('Please replace zebs40926@.com with your real email in the HTML first.');
-        return;
-      }
+      const recipient = 'azeb52610@gmail.com';
+      
       const body = `Name: ${name}\nReply email: ${email}\n\n${message}`;
       window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
